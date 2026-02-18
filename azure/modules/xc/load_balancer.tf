@@ -1,12 +1,12 @@
 resource "volterra_http_loadbalancer" "appProxy" {
-  name      = "${var.se_namespace}-capsule-corp-main-page"
+  name      = "${var.se_namespace}-lab-main-page"
   namespace = var.se_namespace
 
   advertise_on_public_default_vip = true
   disable_api_definition          = true
   no_challenge                    = true
 
-  domains = ["${var.se_namespace}-cap-corp-main.${var.delegated_dns_domain}"]
+  domains = ["${var.se_namespace}-lab-main.${var.delegated_dns_domain}"]
   
   source_ip_stickiness = true
 
