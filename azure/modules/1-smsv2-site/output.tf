@@ -14,3 +14,18 @@ output "cluster_name" {
     for key, site in volterra_securemesh_site_v2.site : key => site.name
   }
 }
+
+output "site_names" {
+  description = "List of full site names"
+  value       = [for site in volterra_securemesh_site_v2.site : site.name]
+}
+
+output "us_site_name" {
+  description = "Full name of the US site"
+  value       = volterra_securemesh_site_v2.site["us"].name
+}
+
+output "in_site_name" {
+  description = "Full name of the India site"
+  value       = volterra_securemesh_site_v2.site["in"].name
+}

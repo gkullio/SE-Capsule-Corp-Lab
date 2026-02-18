@@ -9,7 +9,7 @@ resource "random_id" "main" {
 
 resource "azurerm_resource_group" "rg" {
   for_each = var.sites
-  name     = "${var.se_name}-${each.value.rg_name}-${random_id.site[each.key].dec}"
+  name     = "${var.se_namespace}-${each.value.rg_name}-${random_id.site[each.key].dec}"
   location = each.value.location
 }
 
@@ -33,12 +33,20 @@ module "smsv2" {
 
   sites = {
     for key, site in var.sites : key => {
-      name         = "${var.se_name}-${site.name}-${random_id.site[key].dec}"
+      name         = "${var.se_namespace}-${site.name}-${random_id.site[key].dec}"
       region_label = site.region_label
     }
   }
 }
 
+##################### Create XC Load Balancer ####################
+
+module "xc" {
+  source                = "./modules/xc"
+  tenant                = var.tenant
+  se_namespace          = var.se_namespace
+  delegated_dns_domain  = var.delegated_dns_domain
+}
 
 ##################### Azure VNET ####################
 
@@ -95,7 +103,7 @@ module "azure-vm" {
       sli_nic_ids        = module.azure-vnet.sli_nic_ids[key]
       sli_1_nic_ids      = module.azure-vnet.sli_1_nic_ids[key]
       external_public_ip = module.azure-vnet.external_public_ip[key]
-      cloud_init_dir     = lookup({ "us" = "ce-sms-token-us", "in" = "ce-sms-token-india" }, key)
+      cloud_init_dir     = lookup({ "us" = "ce-token-west-city", "in" = "ce-token-frieza-force" }, key)
     }
   }
 

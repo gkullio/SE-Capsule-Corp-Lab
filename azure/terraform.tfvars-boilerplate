@@ -13,10 +13,10 @@ sites = {
     ext_address_space   = "10.245.1.0/24"
     int_subnet_name     = "internal"
     int_address_space   = "10.245.2.0/24"
-    linux_hostname      = ""
+    linux_hostname      = "linux-west-city"
     linux_vm_name       = "ce-west-city-hq"
-    ubuntu_hostname     = "west-city-app-server"
-    ubuntu_name         = ""
+    ubuntu_hostname     = "west-city-server"
+    ubuntu_name         = "west-city-app-server"
     region_label        = "westus"
     slo_ip_prefix       = "10.245.1"
     sli_ip_prefix       = "10.245.0"
@@ -37,10 +37,10 @@ sites = {
     ext_address_space   = "172.20.1.0/24"
     int_subnet_name     = "internal"
     int_address_space   = "172.20.2.0/24"
-    linux_hostname      = ""
+    linux_hostname      = "linux-frieza-force"
     linux_vm_name       = "ce-frieza-force"
-    ubuntu_hostname     = "frieza-force-app-server"
-    ubuntu_name         = ""
+    ubuntu_hostname     = "frieza-force-server"
+    ubuntu_name         = "frieza-force-app-server"
     region_label        = "india"
     slo_ip_prefix       = "172.20.1"
     sli_ip_prefix       = "172.20.0"
@@ -54,7 +54,6 @@ sites = {
 #################### Common Variables ####################
 
 resourceOwner           = ""  # Email address of the resource owner, used for tagging and naming purposes
-se-name                 = "" # your namespace, or last name 
 instance_count          = 1
 
 #################### SMSv2 Site ####################
@@ -64,6 +63,11 @@ ha                      = false
 namespace               = "system"
 sw                      = "crt-20250613-3382"
 os                      = "9.2025.39"
+
+#################### XC Load Balancer ####################
+
+se_namespace            = ""
+delegated_dns_domain    = "amer-ent.f5demos.com"
 
 #################### Azure CE VM Common Variables ####################
 

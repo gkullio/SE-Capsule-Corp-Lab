@@ -32,7 +32,6 @@ variable "sites" {
 
 variable "resourceOwner" {}
 variable "instance_count" {}
-variable "se_name" {}
 
 #################### Azure Service Principal ####################
 
@@ -48,6 +47,11 @@ variable "ha" {}
 variable "namespace" {}
 variable "sw" {}
 variable "os" {}
+
+#################### XC Load Balancer ####################
+
+variable "se_namespace" {}
+variable "delegated_dns_domain" {}
 
 #################### Azure VM Common Variables ####################
 
