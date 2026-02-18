@@ -1,3 +1,4 @@
+/*
 resource "volterra_origin_pool" "capsule_corp_main" {
   name                   = "${var.se_namespace}-capsule-corp-main-pool"
   namespace              = var.se_namespace
@@ -19,7 +20,7 @@ resource "volterra_origin_pool" "capsule_corp_main" {
   port = 8080
   no_tls = true
 }
-
+*/
 
 resource "volterra_origin_pool" "capsule_corp_main-pub" {
   name                   = "${var.se_namespace}-capsule-corp-main-pool"

@@ -99,14 +99,14 @@ resource "azurerm_network_security_group" "external_nsg" {
   resource_group_name = each.value.rg_name
 
   security_rule {
-    name                       = "vpn_ip_UI_access"
+    name                       = "ce_UI_access"
     priority                   = 1001
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "65500"
-    source_address_prefixes    = var.vpnMgmtSrcAddr
+    source_address_prefixes    = var.adminSrcAddr
     destination_address_prefix = "*"
   }
 
@@ -154,7 +154,7 @@ resource "azurerm_network_security_group" "external_nsg" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "22"
-    source_address_prefixes    = var.vpnMgmtSrcAddr
+    source_address_prefixes    = var.adminSrcAddr
     destination_address_prefix = "*"
   }
 

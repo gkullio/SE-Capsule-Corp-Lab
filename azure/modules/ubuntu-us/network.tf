@@ -46,7 +46,7 @@ resource "azurerm_network_security_group" "management_nsg" {
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_ranges    = ["22", "443", "8443","8080", "8081", "3000", "3001", "3002"]
+    destination_port_ranges    = ["22", "80","8080", "8081", "3000", "3001", "3002"]
     source_address_prefixes    = concat(var.adminSrcAddr, var.REtrafficSrcAddr)
     destination_address_prefix = "*"
   }

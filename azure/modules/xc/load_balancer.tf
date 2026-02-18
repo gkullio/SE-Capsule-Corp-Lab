@@ -23,7 +23,7 @@ resource "volterra_http_loadbalancer" "appProxy" {
   default_route_pools {
     pool {
       namespace = var.se_namespace
-      name      = volterra_origin_pool.capsule_corp_main.name
+      name      = volterra_origin_pool.capsule_corp_main-pub.name
     }
   }
   ############################################################################
