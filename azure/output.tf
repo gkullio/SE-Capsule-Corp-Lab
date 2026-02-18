@@ -29,3 +29,7 @@ output "Ubuntu_SSH_fqdn" {
     us_ubuntu_ssh     = var.enable_dns == 1 ? "ssh ${var.ubuntu-username}@${module.ubuntu-us.westus_app_server_SSH_fqdn}" : "ssh ${var.ubuntu-username}@${module.ubuntu-us.management_public_ip_address}"
   }
 }
+
+output "XC_LB_Main_lab_access" {
+  value = module.xc.XC_LB_FQDN
+}

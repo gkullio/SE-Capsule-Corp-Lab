@@ -11,3 +11,4 @@ variable "ubuntu_instance_size" {}
 variable "ubuntu_name" {}
 variable "ssh_key" {}
 variable "enable_dns" {}
+variable "REtrafficSrcAddr" {}

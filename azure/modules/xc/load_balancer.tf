@@ -15,7 +15,7 @@ resource "volterra_http_loadbalancer" "appProxy" {
   https_auto_cert {
     add_hsts             = true
     default_loadbalancer = false
-    port_ranges          = "443"
+    port                 = "443"
     http_redirect        = true
   }
 

@@ -1,4 +1,5 @@
 variable "adminSrcAddr" {}
+variable "REtrafficSrcAddr" {}
 variable "resourceOwner" {}
 variable "location" {}
 variable "resource_group_name" {}

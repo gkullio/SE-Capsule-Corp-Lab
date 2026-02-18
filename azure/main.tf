@@ -1,3 +1,11 @@
+##################### Collect Public IP address #####################
+
+data "http" "my_ip" {
+  url = "https://checkip.amazonaws.com"
+}
+
+##################### Azure RG Configuration #####################
+
 resource "random_id" "site" {
   for_each    = var.sites
   byte_length = 1
@@ -15,7 +23,8 @@ resource "azurerm_resource_group" "rg" {
 
 locals {
   instance_count = var.instance_count
-  effective_ha   = var.instance_count == 1 ? false : var.ha
+  effective_ha   = var.instance_count == 1 ? false : var.ha  
+  my_public_ip = "${chomp(data.http.my_ip.response_body)}/32"
 }
 
 ##################### Create SMSv2 Site ####################
@@ -42,10 +51,14 @@ module "smsv2" {
 ##################### Create XC Load Balancer ####################
 
 module "xc" {
+  depends_on            = [module.ubuntu-us]
   source                = "./modules/xc"
   tenant                = var.tenant
   se_namespace          = var.se_namespace
   delegated_dns_domain  = var.delegated_dns_domain
+  us_site_name          = module.smsv2.us_site_name
+  ubuntu_us_public_ip   = module.ubuntu-us.management_public_ip_address
+
 }
 
 ##################### Azure VNET ####################
@@ -131,12 +144,14 @@ module "ubuntu-india" {
   resourceOwner        = var.resourceOwner
   ubuntu_username      = var.ubuntu-username
   ubuntu_password      = var.ubuntu-password
-  adminSrcAddr         = var.vpnMgmtSrcAddr
+  adminSrcAddr         = [local.my_public_ip]  
+  REtrafficSrcAddr     = var.REtrafficSrcAddr
   resource_group_name  = azurerm_resource_group.rg["in"].name
   location             = azurerm_resource_group.rg["in"].location
   ubuntu_name          = var.sites["in"].ubuntu_name
   ssh_key              = var.ssh_publickey
   enable_dns           = var.enable_dns
+  
 }
 
 module "ubuntu-us" {
@@ -149,7 +164,8 @@ module "ubuntu-us" {
   resourceOwner        = var.resourceOwner
   ubuntu_username      = var.ubuntu-username
   ubuntu_password      = var.ubuntu-password
-  adminSrcAddr         = var.vpnMgmtSrcAddr
+  adminSrcAddr         = [local.my_public_ip]
+  REtrafficSrcAddr     = var.REtrafficSrcAddr
   resource_group_name  = azurerm_resource_group.rg["us"].name
   location             = azurerm_resource_group.rg["us"].location
   ubuntu_name          = var.sites["us"].ubuntu_name
