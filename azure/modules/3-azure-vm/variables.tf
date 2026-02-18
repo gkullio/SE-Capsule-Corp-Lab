@@ -21,6 +21,5 @@ variable "linux_vm_instance_size" {}
 variable "linux_vm_ssh_username" {}
 variable "ssh_key" {}
 variable "adminSrcAddr" {}
-variable "vpnMgmtSrcAddr" {}
 variable "resourceOwner" {}
 variable "REtrafficSrcAddr" {}

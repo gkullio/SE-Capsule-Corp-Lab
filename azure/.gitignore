@@ -34,10 +34,10 @@ override.tf.json
 .terraform.tfstate.lock.info
 
 # Exclude existing cloud-init files
-ce-sms-token-us/*
-!ce-sms-token-us/.gitkeep
-ce-sms-token-india/*
-!ce-sms-token-india/.gitkeep
+ce-token-frieza-force/*
+!ce-token-frieza-force/.gitkeep
+ce-token-west-city/*
+!ce-token-west-city/.gitkeep
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*

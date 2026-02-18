@@ -25,7 +25,6 @@ variable "sites" {
 ############### Common Variables ###############
 
 variable "adminSrcAddr" {}
-variable "vpnMgmtSrcAddr" {}
 variable "resourceOwner" {}
 variable "linux-username" {}
 variable "linux-password" {}

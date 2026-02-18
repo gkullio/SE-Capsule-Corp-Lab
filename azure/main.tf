@@ -93,8 +93,7 @@ module "azure-vnet" {
   instance_count   = var.instance_count
   ssh_key          = var.ssh_publickey
   REtrafficSrcAddr = var.REtrafficSrcAddr
-  adminSrcAddr     = var.adminSrcAddr
-  vpnMgmtSrcAddr   = var.vpnMgmtSrcAddr
+  adminSrcAddr     = [local.my_public_ip]
   resourceOwner    = var.resourceOwner
   enable_dns       = var.enable_dns
 }
@@ -126,8 +125,7 @@ module "azure-vm" {
   linux_vm_instance_size = var.linux_vm_instance_size
   linux_vm_ssh_username  = var.linux_vm_ssh_username
   ssh_key                = var.ssh_publickey
-  adminSrcAddr           = var.adminSrcAddr
-  vpnMgmtSrcAddr         = var.vpnMgmtSrcAddr
+  adminSrcAddr           = [local.my_public_ip]
   resourceOwner          = var.resourceOwner
   REtrafficSrcAddr       = var.REtrafficSrcAddr
 }

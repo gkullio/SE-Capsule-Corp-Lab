@@ -62,7 +62,7 @@ tenant                  = "" # tenant name is https://<YOUR-TENANT-NAME>.console
 ha                      = false
 namespace               = "system"
 sw                      = "crt-20250613-3382"
-os                      = "9.2025.39"
+os                      = "9.2026.0"
 
 #################### XC Load Balancer ####################
 
