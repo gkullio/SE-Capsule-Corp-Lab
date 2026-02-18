@@ -67,5 +67,4 @@ variable "enable_dns" {}
 
 #################### Source Addresses for NSG Rules ####################
 
-variable "adminSrcAddr" {}
 variable "REtrafficSrcAddr" {}
