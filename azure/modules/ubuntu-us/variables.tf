@@ -1,0 +1,13 @@
+variable "adminSrcAddr" {}
+variable "resourceOwner" {}
+variable "location" {}
+variable "resource_group_name" {}
+variable "mgmt_subnet_id" {}
+variable "int_subnet_id" {}
+variable "ubuntu_hostname" {}
+variable "ubuntu_username" {}
+variable "ubuntu_password" {}
+variable "ubuntu_instance_size" {}
+variable "ubuntu_name" {}
+variable "ssh_key" {}
+variable "enable_dns" {}
