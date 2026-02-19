@@ -6,11 +6,10 @@ resource "volterra_http_loadbalancer" "appProxy" {
   disable_api_definition          = true
   no_challenge                    = true
 
-  domains = ["${var.se_namespace}-lab-main.${var.delegated_dns_domain}"]
+  domains = ["${var.se_namespace}-lab-main.${var.delegated_dns_domain}", "${var.se_namespace}-lab-int.${var.delegated_dns_domain}"]
   
   source_ip_stickiness = true
 
-  ############### Uncomment this section if you want to use HTTPS Auto Cert ################
   ############### Then comment out the http block ################
   https_auto_cert {
     add_hsts             = true
@@ -20,12 +19,14 @@ resource "volterra_http_loadbalancer" "appProxy" {
   }
 
   ############### Attach a Default Pool to the Load Balancer ################
+  /*
   default_route_pools {
     pool {
       namespace = var.se_namespace
       name      = volterra_origin_pool.capsule_corp_main-pub.name
     }
   }
+  */
   ############################################################################
 
   enable_malicious_user_detection = false
@@ -49,7 +50,7 @@ resource "volterra_http_loadbalancer" "appProxy" {
       value  = "*"
       append = false
     }
-  }/*
+  }
   routes {
     simple_route {
       http_method = "ANY"
@@ -58,12 +59,12 @@ resource "volterra_http_loadbalancer" "appProxy" {
       }
       headers {
         name  = "Host"
-        exact = "${var.my_name}-juice.${var.delegated_dns_domain}"
+        exact = "${var.se_namespace}-lab-main.${var.delegated_dns_domain}"
       }
       origin_pools {
         pool {
-          namespace = var.namespace
-          name      = volterra_origin_pool.juice_origin.name
+          namespace = var.se_namespace
+          name      = volterra_origin_pool.capsule_corp_main-pub.name
         }
         weight   = 1
         priority = 1
@@ -78,37 +79,17 @@ resource "volterra_http_loadbalancer" "appProxy" {
       }
       headers {
         name  = "Host"
-        exact = "${var.my_name}-dvwa.${var.delegated_dns_domain}"
+        exact = "${var.se_namespace}-lab-int.${var.delegated_dns_domain}"
       }
       origin_pools {
         pool {
-          namespace = var.namespace
-          name      = volterra_origin_pool.dvwa_origin.name
+          namespace = var.se_namespace
+          name      = volterra_origin_pool.capsule_corp_int-pub.name
         }
         weight   = 1
         priority = 1
       }
     }
   }
-  routes {
-    simple_route {
-      http_method = "ANY"
-      path {
-        prefix = "/"
-      }
-      headers {
-        name  = "Host"
-        exact = "${var.my_name}-demoapp.${var.delegated_dns_domain}"
-      }
-      origin_pools {
-        pool {
-          namespace = var.namespace
-          name      = volterra_origin_pool.demoapp_origin.name
-        }
-        weight   = 1
-        priority = 1
-      }
-    }
-  }*/
 }
 
