@@ -12,3 +12,4 @@ variable "ubuntu_name" {}
 variable "ssh_key" {}
 variable "enable_dns" {}
 variable "REtrafficSrcAddr" {}
+variable "SynMonSrcAddr" {}

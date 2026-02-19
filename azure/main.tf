@@ -144,6 +144,7 @@ module "ubuntu-india" {
   ubuntu_password      = var.ubuntu-password
   adminSrcAddr         = [local.my_public_ip]  
   REtrafficSrcAddr     = var.REtrafficSrcAddr
+  SynMonSrcAddr        = var.SynMonSrcAddr
   resource_group_name  = azurerm_resource_group.rg["in"].name
   location             = azurerm_resource_group.rg["in"].location
   ubuntu_name          = var.sites["in"].ubuntu_name
@@ -164,6 +165,7 @@ module "ubuntu-us" {
   ubuntu_password      = var.ubuntu-password
   adminSrcAddr         = [local.my_public_ip]
   REtrafficSrcAddr     = var.REtrafficSrcAddr
+  SynMonSrcAddr        = var.SynMonSrcAddr
   resource_group_name  = azurerm_resource_group.rg["us"].name
   location             = azurerm_resource_group.rg["us"].location
   ubuntu_name          = var.sites["us"].ubuntu_name

@@ -68,3 +68,4 @@ variable "enable_dns" {}
 #################### Source Addresses for NSG Rules ####################
 
 variable "REtrafficSrcAddr" {}
+variable "SynMonSrcAddr" {}

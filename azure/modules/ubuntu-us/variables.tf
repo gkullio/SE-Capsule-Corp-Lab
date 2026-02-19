@@ -1,5 +1,6 @@
 variable "adminSrcAddr" {}
 variable "REtrafficSrcAddr" {}
+variable "SynMonSrcAddr" {}
 variable "resourceOwner" {}
 variable "location" {}
 variable "resource_group_name" {}
