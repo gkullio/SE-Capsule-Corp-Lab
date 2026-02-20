@@ -43,3 +43,14 @@ https://${var.se_name}-lab-main.amer-ent.f5demos.com
 Internal Lab Page:
 
 https://${var.se_name}-lab-int.amer-ent.f5demos.com
+
+
+|Local Variable | terraform variable |
+
+$TF_VAR_client_id     
+
+$TF_VAR_client_secret    
+
+$TF_VAR_subscription_id  
+
+$TF_VAR_tenant_id 

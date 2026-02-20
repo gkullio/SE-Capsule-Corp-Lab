@@ -10,7 +10,6 @@ resource "volterra_http_loadbalancer" "appProxy" {
   
   source_ip_stickiness = true
 
-  ############### Then comment out the http block ################
   https_auto_cert {
     add_hsts             = true
     default_loadbalancer = false
@@ -23,7 +22,7 @@ resource "volterra_http_loadbalancer" "appProxy" {
   default_route_pools {
     pool {
       namespace = var.se_namespace
-      name      = volterra_origin_pool.capsule_corp_main-pub.name
+      name      = 
     }
   }
   */
@@ -82,6 +81,7 @@ resource "volterra_http_loadbalancer" "appProxy" {
         exact = "${var.se_namespace}-lab-int.${var.delegated_dns_domain}"
       }
       origin_pools {
+        
         pool {
           namespace = var.se_namespace
           name      = volterra_origin_pool.capsule_corp_int-pub.name
