@@ -23,10 +23,15 @@ output "CE_HTTPS_access" {
   }
 }
 
-output "Ubuntu_SSH_fqdn" {
+output "Ubuntu_SSH_Azure" {
   value = {
-    india_ubuntu_ssh  = var.enable_dns == 1 ? "ssh ${var.ubuntu-username}@${module.ubuntu-india.india_app_server_SSH_fqdn}" : "ssh ${var.ubuntu-username}@${module.ubuntu-india.management_public_ip_address}"
-    us_ubuntu_ssh     = var.enable_dns == 1 ? "ssh ${var.ubuntu-username}@${module.ubuntu-us.westus_app_server_SSH_fqdn}" : "ssh ${var.ubuntu-username}@${module.ubuntu-us.management_public_ip_address}"
+    us_ubuntu_ssh     = module.ubuntu-us.management_ssh
+  }
+}
+
+output "Ubuntu_SSH_AWS" {
+  value = {
+    india_ubuntu_ssh  = module.ubuntu-india-aws.management_ssh
   }
 }
 

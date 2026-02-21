@@ -63,7 +63,6 @@ variable "ssh_publickey" {}
 variable "ubuntu_instance_size" {}
 variable "ubuntu-username" {}
 variable "ubuntu-password" {}
-variable "enable_dns" {}
 
 #################### Source Addresses for NSG Rules ####################
 
@@ -77,9 +76,7 @@ variable "aws_ubuntu_instance_type" {}
 variable "india_aws_vpc_cidr" {}
 variable "india_aws_mgmt_subnet_cidr" {}
 variable "india_aws_int_subnet_cidr" {}
-variable "route53_zone_id" {
-  default = ""
-}
+
 
 #################### AWS India Site - CE Node ####################
 

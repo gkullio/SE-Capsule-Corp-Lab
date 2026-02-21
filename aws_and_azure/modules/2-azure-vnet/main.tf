@@ -19,29 +19,7 @@ locals {
   site_instances_map = { for si in local.site_instances : si.key => si }
 }
 
-##################### DNS Zone ####################
 
-data "azurerm_resource_group" "kulland_dns" {
-  count               = var.enable_dns == 1 ? 1 : 0
-  name                = "kulland-dns"
-}
-
-# Reference kulland-dns zone
-data "azurerm_dns_zone" "zone" {
-  count               = var.enable_dns == 1 ? 1 : 0
-  name                = "kulland.info"
-  resource_group_name = data.azurerm_resource_group.kulland_dns[0].name
-}
-
-# Create DNS A records for each CE instance
-resource "azurerm_dns_a_record" "ce_instances" {
-  for_each            = var.enable_dns == 1 ? local.site_instances_map : {}
-  name                = "ce-smg-${each.key}"
-  zone_name           = data.azurerm_dns_zone.zone[0].name
-  resource_group_name = data.azurerm_resource_group.kulland_dns[0].name
-  ttl                 = 60
-  records             = [azurerm_public_ip.external_pubip[each.key].ip_address]
-}
 
 ##################### Virtual Networks ####################
 

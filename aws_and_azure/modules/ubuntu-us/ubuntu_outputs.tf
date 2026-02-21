@@ -4,6 +4,6 @@ output "management_public_ip_address" {
 output "management_public_ip_address_different_resource" {
   value = azurerm_public_ip.management_pubip.ip_address
 }
-output "westus_app_server_SSH_fqdn" {
-  value = var.enable_dns == 1 ? trimsuffix(azurerm_dns_a_record.ubuntu[0].fqdn, ".") : "DNS not enabled"
+output "management_ssh" {
+  value = "ssh ${var.ubuntu_username}@${azurerm_public_ip.management_pubip.ip_address}"
 }

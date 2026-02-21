@@ -1,3 +1,8 @@
+# WIP - This lab is still being built out, but the main goal is to deploy a CE and App Server in Azure and AWS using Terraform.
+
+
+
+
 ### Prerequisites:
 
 You will need an .p12 API Certificate from Distibuted Cloud and store it in the same directory as the root main.tf file.

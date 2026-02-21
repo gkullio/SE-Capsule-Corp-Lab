@@ -31,4 +31,3 @@ variable "linux-password" {}
 variable "ssh_key" {}
 variable "REtrafficSrcAddr" {}
 variable "instance_count" {}
-variable "enable_dns" {}

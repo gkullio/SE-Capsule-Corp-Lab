@@ -98,7 +98,6 @@ module "azure-vnet" {
   REtrafficSrcAddr = var.REtrafficSrcAddr
   adminSrcAddr     = [local.my_public_ip]
   resourceOwner    = var.resourceOwner
-  enable_dns       = var.enable_dns
 }
 
 ##################### Azure CE VMs ####################
@@ -192,8 +191,6 @@ module "ubuntu-india" {
   REtrafficSrcAddr     = var.REtrafficSrcAddr
   SynMonSrcAddr        = var.SynMonSrcAddr
   ssh_public_key       = var.ssh_publickey
-  enable_dns           = var.enable_dns
-  route53_zone_id      = var.route53_zone_id
   vpc_cidr             = var.india_aws_vpc_cidr
   mgmt_subnet_cidr     = var.india_aws_mgmt_subnet_cidr
   int_subnet_cidr      = var.india_aws_int_subnet_cidr
@@ -216,6 +213,5 @@ module "ubuntu-us" {
   location             = azurerm_resource_group.rg["us"].location
   ubuntu_name          = var.sites["us"].ubuntu_name
   ssh_key              = var.ssh_publickey
-  enable_dns           = var.enable_dns
 }
 

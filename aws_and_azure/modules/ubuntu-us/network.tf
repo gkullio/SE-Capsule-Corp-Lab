@@ -1,16 +1,3 @@
-# Reference kulland-dns resource group
-data "azurerm_resource_group" "kulland_dns" {
-  count               = var.enable_dns == 1 ? 1 : 0
-  name                = "kulland-dns"
-}
-
-# Reference kulland-dns zone
-data "azurerm_dns_zone" "zone" {
-  count = var.enable_dns == 1 ? 1 : 0
-  name                = "kulland.info"
-  resource_group_name = data.azurerm_resource_group.kulland_dns[0].name
-}
-
 # Create public IPs
 resource "azurerm_public_ip" "management_pubip" {
   name                = "ubuntu-management_pubip"
@@ -21,16 +8,6 @@ resource "azurerm_public_ip" "management_pubip" {
   tags = {
     owner = var.resourceOwner
   }
-}
-
-# Create a DNS A record pointing to the BIG-IP Mgmt Public IP
-resource "azurerm_dns_a_record" "ubuntu" {
-  count               = var.enable_dns == 1 ? 1 : 0
-  name                = "ubuntu-smg-us"
-  zone_name           = data.azurerm_dns_zone.zone[0].name
-  resource_group_name = data.azurerm_resource_group.kulland_dns[0].name
-  ttl                 = 60
-  records             = [resource.azurerm_public_ip.management_pubip.ip_address]
 }
 
 # Create Network Security Group and rule

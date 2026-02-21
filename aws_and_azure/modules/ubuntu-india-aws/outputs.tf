@@ -9,6 +9,6 @@ output "management_private_ip_address" {
 }
 
 # Equivalent to india_app_server_SSH_fqdn
-output "india_app_server_SSH_fqdn" {
-  value = var.enable_dns == 1 ? trimsuffix(aws_route53_record.ubuntu[0].fqdn, ".") : "DNS not enabled"
+output "management_ssh" {
+  value = "ssh ${var.ubuntu_username}@${aws_eip.management.public_ip}"
 }

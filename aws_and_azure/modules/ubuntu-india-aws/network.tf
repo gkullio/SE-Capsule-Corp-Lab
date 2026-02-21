@@ -146,19 +146,3 @@ resource "aws_eip_association" "management" {
   allocation_id = aws_eip.management.id
 }
 
-##################### DNS (Route 53) #####################
-
-# Equivalent to data "azurerm_dns_zone" and azurerm_dns_a_record
-data "aws_route53_zone" "zone" {
-  count   = var.enable_dns == 1 ? 1 : 0
-  zone_id = var.route53_zone_id
-}
-
-resource "aws_route53_record" "ubuntu" {
-  count   = var.enable_dns == 1 ? 1 : 0
-  zone_id = var.route53_zone_id
-  name    = "ubuntu-smg-india"
-  type    = "A"
-  ttl     = 60
-  records = [aws_eip.management.public_ip]
-}
