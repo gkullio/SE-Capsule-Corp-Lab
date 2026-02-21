@@ -1,0 +1,89 @@
+#################### Site Configuration ####################
+
+sites = {
+  "us" = {
+    rg_name             = "west-city-hq-rg"
+    location            = "westus"
+    name                = "west-city-hq"
+    vnet_name           = "west-city-hq-vnet"
+    vnet_address_space  = "10.245.0.0/16"
+    mgmt_subnet_name    = "management"
+    mgmt_address_space  = "10.245.0.0/24"
+    ext_subnet_name     = "external"
+    ext_address_space   = "10.245.1.0/24"
+    int_subnet_name     = "internal"
+    int_address_space   = "10.245.2.0/24"
+    linux_hostname      = "linux-west-city"
+    linux_vm_name       = "ce-west-city-hq"
+    ubuntu_hostname     = "west-city-server"
+    ubuntu_name         = "west-city-app-server"
+    region_label        = "westus"
+    slo_ip_prefix       = "10.245.1"
+    sli_ip_prefix       = "10.245.0"
+    sli_1_ip_prefix     = "10.245.2"
+    slo_ip_offset       = 10
+    sli_ip_offset       = 50
+    sli_1_ip_offset     = 20
+  }
+  "in" = {
+    rg_name             = "frieza-force-rg"
+    location            = "centralindia"
+    name                = "frieza-force"
+    vnet_name           = "frieza-force-vnet"
+    vnet_address_space  = "172.20.0.0/16"
+    mgmt_subnet_name    = "management"
+    mgmt_address_space  = "172.20.0.0/24"
+    ext_subnet_name     = "external"
+    ext_address_space   = "172.20.1.0/24"
+    int_subnet_name     = "internal"
+    int_address_space   = "172.20.2.0/24"
+    linux_hostname      = "linux-frieza-force"
+    linux_vm_name       = "ce-frieza-force"
+    ubuntu_hostname     = "frieza-force-server"
+    ubuntu_name         = "frieza-force-app-server"
+    region_label        = "india"
+    slo_ip_prefix       = "172.20.1"
+    sli_ip_prefix       = "172.20.0"
+    sli_1_ip_prefix     = "172.20.2"
+    slo_ip_offset       = 10
+    sli_ip_offset       = 50
+    sli_1_ip_offset     = 20
+  }
+}
+
+#################### Common Variables ####################
+
+resourceOwner           = ""  # Email address of the resource owner, used for tagging and naming purposes
+instance_count          = 1
+
+#################### SMSv2 Site ####################
+
+tenant                  = "" # tenant name is https://<YOUR-TENANT-NAME>.console.ves.volterra.io/
+ha                      = false
+namespace               = "system"
+sw                      = "crt-20250613-3382"
+os                      = "9.2026.0"
+
+#################### XC Load Balancer ####################
+
+se_namespace            = ""
+delegated_dns_domain    = "amer-ent.f5demos.com"
+
+#################### Azure CE VM Common Variables ####################
+
+linux_vm_instance_size  = "Standard_B8ms"
+linux-username          = "cloud-user"
+linux-password          = "" # Ensure strong password with Uppercase, lowercase, numbers, and special characters
+linux_vm_ssh_username   = "cloud-user"
+ssh_publickey           = "~/.ssh/id_rsa.pub"
+
+#################### Azure VM App Server Common Variables ####################
+
+ubuntu_instance_size    = "Standard_F2s_v2"
+ubuntu-username         = ""
+ubuntu-password         = "" # Ensure strong password with Uppercase, lowercase, numbers, and special characters
+enable_dns              = 0 # leave this as 0, as we are not using Azure provided DNS for the VMs.
+
+#################### Source Addresses for NSG Rules ####################
+
+REtrafficSrcAddr        = ["5.182.215.0/25", "84.54.61.0/25", "23.158.32.0/25", "84.54.62.0/25", "185.94.143.0/25", "185.94.142.0/24", "159.60.190.0/24", "159.60.168.0/24", "159.60.180.0/24", "159.60.174.0/24", "159.60.175.0/24", "159.60.176.0/24", "159.60.177.0/24", "159.60.179.0/24", "159.60.181.0/24", "159.60.183.0/24", "5.182.213.0/24", "5.182.212.0/25", "5.182.214.0/25", "84.54.60.0/25", "185.56.154.0/25", "159.60.160.0/24", "159.60.161.0/24", "159.60.162.0/24", "159.60.163.0/24", "159.60.188.0/24", "159.60.182.0/24", "159.60.178.0/24", "103.135.56.0/24", "103.135.57.0/25", "103.135.59.0/25", "103.135.58.0/24", "159.60.189.0/24", "159.60.166.0/24", "159.60.164.0/24", "159.60.170.0/24", "159.60.172.0/24", "159.60.191.0/24", "159.60.184.0/24", "159.60.185.0/24", "159.60.186.0/24"]
