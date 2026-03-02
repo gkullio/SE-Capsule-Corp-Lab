@@ -23,17 +23,17 @@ output "CE_HTTPS_access" {
   }
 }
 
-output "Ubuntu_SSH_Azure" {
-  value = {
-    us_ubuntu_ssh     = module.ubuntu-us.management_ssh
-  }
-}
+#utput "Ubuntu_SSH_Azure" {
+# value = {
+#   us_ubuntu_ssh     = module.ubuntu-us.management_ssh
+# }
+#
 
-output "Ubuntu_SSH_AWS" {
-  value = {
-    india_ubuntu_ssh  = module.ubuntu-india-aws.management_ssh
-  }
-}
+#utput "Ubuntu_SSH_AWS" {
+# value = {
+#   india_ubuntu_ssh  = module.ubuntu-india-aws.management_ssh
+# }
+#
 
 output "XC_LB_Main_lab_access" {
   value = module.xc.XC_LB_FQDN
