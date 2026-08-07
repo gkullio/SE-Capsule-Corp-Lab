@@ -7,7 +7,7 @@ sudo apt-get install net-tools -y
 sudo apt-get install curl -y
 sudo apt-get install unzip -y
 sudo apt-get install apache2-utils -y
-ping -c 50 127.0.0.1
+ping -c 5 127.0.0.1
 echo "PING COMPLETE" > ping_done.txt;
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
