@@ -67,10 +67,6 @@ resource "volterra_securemesh_site_v2" "site" {
       enable_offline_survivability_mode = true
     }
 
-    performance_enhancement_mode {
-      perf_mode_l7_enhanced = true
-    }
-
     re_select {
       geo_proximity = true
     }

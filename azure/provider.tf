@@ -4,7 +4,7 @@ terraform {
   required_providers {
     volterra = {
       source = "volterraedge/volterra"
-      version = "0.11.47"
+      version = "0.11.49"
     }
     azapi = {
       source  = "azure/azapi"
